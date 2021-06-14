@@ -14,7 +14,7 @@ git clone https://github.com/topser9/twrp_device_samsung_a50.git device/samsung/
 ```
 Sync
 ```
-$ repo sync
+repo sync
 ```
 # How-to build:
 ```
