@@ -31,7 +31,7 @@ see recovery.img
 ```
 # Device Tree for Samsung Galaxy A20e (SM-A202F/K)
 
-Device Tree Made by topser99
+Device Tree Made by topser9
 ```
 ## Specs
 |        Component        |          Specification            |
