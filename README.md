@@ -1,5 +1,5 @@
 # TWRP Samsung Galaxy A20e
-![Galaxy A20e](https://fdn2.gsmarena.com/vv/bigpic/samsung-galaxy-a20e.jpg "Galaxy A20e")
+
 # How-to install dependencies
 ```
 # How-to clone source and device tree:
@@ -33,6 +33,7 @@ see recovery.img
 
 Device Tree Made by topser9
 ```
+![Galaxy A20e](https://fdn2.gsmarena.com/vv/bigpic/samsung-galaxy-a20e.jpg "Galaxy A20e")
 ## Specs
 |        Component        |          Specification            |
 | :---------------------- | :-------------------------------- |
