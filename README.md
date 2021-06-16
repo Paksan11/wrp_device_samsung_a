@@ -1,31 +1,31 @@
 # TWRP Samsung Galaxy A20e
 
-# How-to install dependencies
+# How to compile it:
+
+How-to clone source and device tree:
 ```
-# How-to clone source and device tree:
+$ mkdir -p ~/twrp && cd ~/twrp
 
-mkdir -p ~/twrp && cd ~/twrp
-
-repo init --depth=1 -u git://github.com/minimal-manifest-twrp/platform_manifest_twrp_omni.git -b twrp-9.0
+$ repo init --depth=1 -u git://github.com/minimal-manifest-twrp/platform_manifest_twrp_omni.git -b twrp-9.0
 ```
 # Clone a20e repo
 ```
-git clone https://github.com/topser9/twrp_device_samsung_a20e.git device/samsung/a20e
+$ git clone https://github.com/topser9/twrp_device_samsung_a20e.git device/samsung/a20e
 ```
 Sync
 ```
-repo sync
+$ repo sync
 ```
 # How-to build:
 ```
-export ALLOW_MISSING_DEPENDENCIES=true
-. build/envsetup.sh
-lunch omni_a20e-eng
-mka recoveryimage
+$ export ALLOW_MISSING_DEPENDENCIES=true
+$ . build/envsetup.sh
+$ lunch omni_a20e-eng
+$ mka recoveryimage
 ```
 ## How to find the image built
 ```
-`cd /out/target/product/a20e`
+`$ cd /out/target/product/a20e`
 ```
 see recovery.img
 ```
@@ -40,7 +40,7 @@ Device Tree Made by topser9
 | Chipset                 | Exynos 7884B                      |
 | Memory                  | 3 GB                              |
 | Storage                 | 32GB                              |
-| Battery                 | 4000 mAh (non-removable)          |
+| Battery                 | 3000 mAh (non-removable)          |
 | Dimensions              | 158.4 x 74.7 x 7.8 mm             |
 | Display                 | 720 x 1560 pixels, 19.5:9, 268PPI |
 | Release Date            | 2019 April                        |
