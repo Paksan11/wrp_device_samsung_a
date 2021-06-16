@@ -12,7 +12,7 @@ $ repo init --depth=1 -u git://github.com/minimal-manifest-twrp/platform_manifes
 ```
 $ git clone https://github.com/topser9/twrp_device_samsung_a30s.git device/samsung/a30s
 ```
-Sync
+# Sync
 ```
 $ repo sync
 ```
@@ -25,7 +25,7 @@ $ mka recoveryimage
 ```
 ## How to find the image built
 ```
-`cd /out/target/product/a30s`
+`$ cd /out/target/product/a30s`
 ```
 see recovery.img
 ```
