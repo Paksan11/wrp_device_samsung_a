@@ -2,7 +2,7 @@
 
 # How to compile it:
 
-# How-to clone source and device tree:
+How-to clone source and device tree:
 ```
 $ mkdir -p ~/twrp && cd ~/twrp
 
