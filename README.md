@@ -1,6 +1,6 @@
 # TWRP Samsung Galaxy A20
 
-# How-to install dependencies
+# How to compile it:
 ```
 # How-to clone source and device tree:
 
