@@ -4,28 +4,28 @@
 ```
 # How-to clone source and device tree:
 
-mkdir -p ~/twrp && cd ~/twrp
+$ mkdir -p ~/twrp && cd ~/twrp
 
-repo init --depth=1 -u git://github.com/minimal-manifest-twrp/platform_manifest_twrp_omni.git -b twrp-9.0
+$ repo init --depth=1 -u git://github.com/minimal-manifest-twrp/platform_manifest_twrp_omni.git -b twrp-9.0
 ```
 # Clone a20 repo
 ```
-git clone https://github.com/topser9/twrp_device_samsung_a20.git device/samsung/a20
+$ git clone https://github.com/topser9/twrp_device_samsung_a20.git device/samsung/a20
 ```
 Sync
 ```
-repo sync
+$ repo sync
 ```
 # How-to build:
 ```
-export ALLOW_MISSING_DEPENDENCIES=true
-. build/envsetup.sh
-lunch omni_a20-eng
-mka recoveryimage
+$ export ALLOW_MISSING_DEPENDENCIES=true
+$ . build/envsetup.sh
+$ lunch omni_a20-eng
+$ mka recoveryimage
 ```
 ## How to find the image built
 ```
-`cd /out/target/product/a20`
+`$ cd /out/target/product/a20`
 ```
 see recovery.img
 ```
@@ -34,6 +34,7 @@ see recovery.img
 Device Tree Made by topser99
 ```
 ![Galaxy A20](https://fdn2.gsmarena.com/vv/bigpic/samsung-galaxy-a20.jpg "Galaxy A20")
+
 # Specs
 |---------------------------------------------------------------------------------|
 |      Component        |          Specification                                  |
