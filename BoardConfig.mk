@@ -1,6 +1,5 @@
-
 #
-# Copyright (C) 2019 santhoosh
+# Copyright (C) 2020 topser9
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -42,25 +41,33 @@ ENABLE_SCHEDBOOST := true
 ALLOW_MISSING_DEPENDENCIES := true
 
 # Bootloader
-BOARD_VENDOR := samsung
-TARGET_SOC := exynos9611
 TARGET_BOOTLOADER_BOARD_NAME := universal9611
 TARGET_NO_BOOTLOADER := true
 TARGET_NO_RADIOIMAGE := true
 
 # Kernel
+BOARD_KERNEL_IMAGE_NAME := Image
 BOARD_KERNEL_BASE := 0x10000000
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive androidboot.hardware=exynos9611
-BOARD_INCLUDE_RECOVERY_DTBO := true
-BOARD_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)/prebuilt/recovery_dtbo
 TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/Image
 
-BOARD_MKBOOTIMG_ARGS := --kernel_offset 0x00008000 --ramdisk_offset 0x01000000 --tags_offset 0x00000100 --header_version 1 --board SRPRL05B001RU
+# Recovery DTBO
+BOARD_INCLUDE_RECOVERY_DTBO := true
+BOARD_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)/prebuilt/recovery_dtbo
+
+# mkbootimg arguments
+BOARD_MKBOOTIMG_ARGS := --kernel_offset 0x00008000
+BOARD_MKBOOTIMG_ARGS += --ramdisk_offset 0x01000000
+BOARD_MKBOOTIMG_ARGS += --tags_offset 0x00000100
+BOARD_MKBOOTIMG_ARGS += --header_version 1
+BOARD_MKBOOTIMG_ARGS += --board SRPRL05B001RU
 
 # Platform
-TARGET_BOARD_PLATFORM := exynos5
-TARGET_BOARD_PLATFORM_GPU := mali-g72
+BOARD_VENDOR := samsung
+TARGET_SOC := exynos9611
+TARGET_BOARD_PLATFORM := exynos9
+TARGET_BOARD_PLATFORM_GPU := Mali-G72 MP3
 
 # Filesystem
 BOARD_HAS_LARGE_FILESYSTEM := true
@@ -70,6 +77,7 @@ TARGET_USERIMAGES_USE_F2FS := true
 # System as root
 BOARD_BUILD_SYSTEM_ROOT_IMAGE := true
 BOARD_SUPPRESS_SECURE_ERASE := true
+AB_OTA_UPDATER := false
 
 # Workaround for error copying vendor files to recovery ramdisk
 BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
@@ -79,25 +87,37 @@ TARGET_COPY_OUT_VENDOR := vendor
 BOARD_HAS_LARGE_FILESYSTEM := true
 TARGET_RECOVERY_PIXEL_FORMAT := "ABGR_8888"
 
+# Do not go full treble for recovery
+PRODUCT_FULL_TREBLE_OVERRIDE := false
+
+# Add Timezone database
+PRODUCT_COPY_FILES += \
+	system/timezone/output_data/iana/tzdata:$(TARGET_ROOT_OUT)/system/usr/share/zoneinfo/tzdata
+
+# VNDK
+BOARD_VNDK_VERSION := current
+
 # TWRP specific build flags
 RECOVERY_VARIANT := twrp
 TW_THEME := portrait_hdpi
 RECOVERY_SDCARD_ON_DATA := true
+# Do not set up legacy properties
+TW_NO_LEGACY_PROPS := true
 TW_BRIGHTNESS_PATH := "/sys/class/backlight/panel/brightness"
 TW_MAX_BRIGHTNESS := 255
-TW_DEFAULT_BRIGHTNESS := 153
+TW_DEFAULT_BRIGHTNESS := 96
+TW_USE_TOOLBOX := true
 TW_Y_OFFSET := 80
 TW_H_OFFSET := -80
 TW_NO_REBOOT_BOOTLOADER := true
 TW_HAS_DOWNLOAD_MODE := true
 TW_INCLUDE_NTFS_3G := true
+TW_EXCLUDE_TWRPAPP := true
 TW_EXTRA_LANGUAGES := true
 TW_USE_NEW_MINADBD := true
-TW_USE_TOOLBOX := true
-TW_EXCLUDE_TWRPAPP := true
-PLATFORM_VERSION := 11
+TW_INCLUDE_RESETPROP := true
+TW_INCLUDE_REPACKTOOLS := true
+TW_INCLUDE_LIBRESETPROP := true
+TW_EXCLUDE_DEFAULT_USB_INIT := true
 PLATFORM_SECURITY_PATCH := 2099-12-31
-
-# Debug-tools
-TWRP_INCLUDE_LOGCAT := true
-TARGET_USES_LOGD := true
+PLATFORM_VERSION := 9.0
