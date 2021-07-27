@@ -41,7 +41,7 @@ ENABLE_SCHEDBOOST := true
 ALLOW_MISSING_DEPENDENCIES := true
 
 # Bootloader
-TARGET_BOOTLOADER_BOARD_NAME := exynos7884B
+TARGET_BOOTLOADER_BOARD_NAME := universal7884B
 TARGET_NO_BOOTLOADER := true
 TARGET_NO_RADIOIMAGE := true
 
@@ -55,11 +55,16 @@ BOARD_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)/prebuilt/recovery_dtbo
 TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/Image
 
 # mkbootimg arguments
-BOARD_MKBOOTIMG_ARGS := --kernel_offset 0x00008000 --ramdisk_offset 0x01000000 --tags_offset 0x00000100 --header_version 1 --board SRPSA16A009RU
+BOARD_MKBOOTIMG_ARGS := --kernel_offset 0x00008000
+BOARD_MKBOOTIMG_ARGS += --ramdisk_offset 0x01000000
+BOARD_MKBOOTIMG_ARGS += --tags_offset 0x00000100
+BOARD_MKBOOTIMG_ARGS += --header_version 1
+BOARD_MKBOOTIMG_ARGS += --board SRPSA16A009RU
 
 # Platform
 BOARD_VENDOR := samsung
-TARGET_BOARD_PLATFORM := universal7884B
+TARGET_SOC := exynos7884
+TARGET_BOARD_PLATFORM := exynos7884
 TARGET_BOARD_PLATFORM_GPU := Mali-G71 MP2
 
 # Filesystem
@@ -80,16 +85,15 @@ TARGET_COPY_OUT_VENDOR := vendor
 BOARD_HAS_LARGE_FILESYSTEM := true
 TARGET_RECOVERY_PIXEL_FORMAT := "ABGR_8888"
 
-# Dynamic partitions
-PRODUCT_USE_DYNAMIC_PARTITIONS := true
-
-# fastbootd
-PRODUCT_PACKAGES += \
-    android.hardware.fastboot@1.0-impl-mock \
-    fastbootd
+# SEPOLICY
+BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy
 
 # Do not go full treble for recovery
 PRODUCT_FULL_TREBLE_OVERRIDE := false
+
+# Add Timezone database
+PRODUCT_COPY_FILES += \
+	system/timezone/output_data/iana/tzdata:$(TARGET_ROOT_OUT)/system/usr/share/zoneinfo/tzdata
 
 # VNDK
 BOARD_VNDK_VERSION := current
@@ -112,11 +116,9 @@ TW_INCLUDE_NTFS_3G := true
 TW_EXCLUDE_TWRPAPP := true
 TW_EXTRA_LANGUAGES := true
 TW_USE_NEW_MINADBD := true
-TW_EXCLUDE_DEFAULT_USB_INIT := true
+TW_INCLUDE_RESETPROP := true
 TW_INCLUDE_REPACKTOOLS := true
 TW_INCLUDE_LIBRESETPROP := true
+TW_EXCLUDE_DEFAULT_USB_INIT := true
+PLATFORM_VERSION := 10.0
 PLATFORM_SECURITY_PATCH := 2099-12-31
-
-# Debug-tools
-TWRP_INCLUDE_LOGCAT := true
-TARGET_USES_LOGD := true
