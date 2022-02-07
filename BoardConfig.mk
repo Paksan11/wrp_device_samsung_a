@@ -87,7 +87,8 @@ TARGET_RECOVERY_PIXEL_FORMAT := "ABGR_8888"
 # Do not go full treble for recovery
 PRODUCT_FULL_TREBLE_OVERRIDE := false
 
-# fastbootdPRODUCT_PACKAGES += \ android.hardware.fastboot@1.0-impl-mock \ fastbootd
+# fastboot
+PRODUCT_PACKAGES += \ android.hardware.fastboot@1.0-impl-mock \ fastbootd
 
 # Add Timezone database
 PRODUCT_COPY_FILES += \
