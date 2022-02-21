@@ -17,14 +17,14 @@
 DEVICE_PATH := device/samsung/a20
 
 # OTA Assert
-TARGET_OTA_ASSERT_DEVICE := a20xxx,a205f
+TARGET_OTA_ASSERT_DEVICE := a20,a20dd
 
 # Architecture
 TARGET_ARCH := arm64
 TARGET_ARCH_VARIANT := armv8-a
 TARGET_CPU_ABI := arm64-v8a
 TARGET_CPU_ABI2 :=
-TARGET_CPU_VARIANT := cortex-a73
+TARGET_CPU_VARIANT := cortex-a53
 TARGET_CPU_SMP := true
 
 TARGET_2ND_ARCH := arm
@@ -85,19 +85,6 @@ TARGET_COPY_OUT_VENDOR := vendor
 BOARD_HAS_LARGE_FILESYSTEM := true
 TARGET_RECOVERY_PIXEL_FORMAT := "ABGR_8888"
 
-# SEPOLICY
-BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy
-
-# Do not go full treble for recovery
-PRODUCT_FULL_TREBLE_OVERRIDE := false
-
-# Add Timezone database
-PRODUCT_COPY_FILES += \
-	system/timezone/output_data/iana/tzdata:$(TARGET_ROOT_OUT)/system/usr/share/zoneinfo/tzdata
-
-# VNDK
-BOARD_VNDK_VERSION := current
-
 # TWRP specific build flags
 RECOVERY_VARIANT := twrp
 TW_THEME := portrait_hdpi
@@ -122,3 +109,29 @@ TW_INCLUDE_LIBRESETPROP := true
 TW_EXCLUDE_DEFAULT_USB_INIT := true
 PLATFORM_VERSION := 10.0
 PLATFORM_SECURITY_PATCH := 2099-12-31
+
+# SHRP-specific flags
+SHRP_PATH := device/samsung/a20
+# Maintainer name
+SHRP_MAINTAINER := topser99
+# Device codename
+SHRP_DEVICE_CODE := a20
+# Storage paths
+SHRP_EXTERNAL := /external_sd
+SHRP_INTERNAL := /sdcard
+SHRP_OTG := /usb_otg
+# Enable use of flashlight
+SHRP_FLASH := 1
+SHRP_CUSTOM_FLASHLIGHT := true
+SHRP_FONP_1 := /sys/devices/virtual/camera/flash/rear_torch_flash
+# The device's recovery path, dont use blindly
+SHRP_REC := /dev/block/13500000.dwmmc0/by-name/recovery
+# Recovery Type [Only for About Section]
+SHRP_REC_TYPE := Treble
+# Recovery Type [Only for About Section]
+SHRP_DEVICE_TYPE := A_Only
+# SHRP Padding Flag (Only for rounded corner devices.)
+SHRP_STATUSBAR_RIGHT_PADDING := 80
+SHRP_STATUSBAR_LEFT_PADDING := 80
+# SHRP Express, enables on-the-fly theme patching (also persistent) + persistent lock
+SHRP_EXPRESS := true
