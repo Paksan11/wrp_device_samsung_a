@@ -41,6 +41,7 @@ ENABLE_SCHEDBOOST := true
 ALLOW_MISSING_DEPENDENCIES := true
 
 # Bootloader
+TARGET_BOOTLOADER_BOARD_NAME := universal7884B
 TARGET_NO_BOOTLOADER := true
 TARGET_NO_RADIOIMAGE := true
 
@@ -108,29 +109,3 @@ TW_INCLUDE_LIBRESETPROP := true
 TW_EXCLUDE_DEFAULT_USB_INIT := true
 PLATFORM_VERSION := 10.0
 PLATFORM_SECURITY_PATCH := 2099-12-31
-
-# SHRP-specific flags
-SHRP_PATH := device/samsung/a20
-# Maintainer name
-SHRP_MAINTAINER := topser99
-# Device codename
-SHRP_DEVICE_CODE := a20
-# Storage paths
-SHRP_EXTERNAL := /external_sd
-SHRP_INTERNAL := /sdcard
-SHRP_OTG := /usb_otg
-# Enable use of flashlight
-SHRP_FLASH := 1
-SHRP_CUSTOM_FLASHLIGHT := true
-SHRP_FONP_1 := /sys/devices/virtual/camera/flash/rear_torch_flash
-# The device's recovery path, dont use blindly
-SHRP_REC := /dev/block/13500000.dwmmc0/by-name/recovery
-# Recovery Type [Only for About Section]
-SHRP_REC_TYPE := Treble
-# Recovery Type [Only for About Section]
-SHRP_DEVICE_TYPE := A_Only
-# SHRP Padding Flag (Only for rounded corner devices.)
-SHRP_STATUSBAR_RIGHT_PADDING := 80
-SHRP_STATUSBAR_LEFT_PADDING := 80
-# SHRP Express, enables on-the-fly theme patching (also persistent) + persistent lock
-SHRP_EXPRESS := true
