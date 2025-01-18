@@ -168,7 +168,7 @@ TW_THEME := portrait_hdpi
 # Do not set up legacy properties
 TW_NO_LEGACY_PROPS := true
 TW_INPUT_BLACKLIST := "hbtp_vm"
-TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
+TW_BRIGHTNESS_PATH := "sys/class/leds/lcd-backlight/brightness"
 TW_MAX_BRIGHTNESS := 255
 TW_DEFAULT_BRIGHTNESS := 100
 TW_Y_OFFSET := 60
