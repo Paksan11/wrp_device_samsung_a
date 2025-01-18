@@ -205,4 +205,4 @@ TW_INCLUDE_LPTOOLS := true
 TW_USES_VENDOR_LIBS := true
 TW_ENABLE_BLKDISCARD := true
 TW_FORCE_KEYMASTER_VER := true
-TW_LOAD_VENDOR_MODULES := $(strip $(shell cat /recovery/root/vendor/lib/modules/modules.load))
+TW_LOAD_VENDOR_MODULES := $(strip $(shell cat $(DEVICE_PATH)/recovery/root/vendor/lib/modules/modules.load))
