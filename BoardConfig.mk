@@ -190,7 +190,7 @@ TW_INCLUDE_FUSE_EXFAT := true
 TW_DEFAULT_EXTERNAL_STORAGE := true
 TW_EXCLUDE_DEFAULT_USB_INIT := true
 TW_USE_MODEL_HARDWARE_ID_FOR_DEVICE_ID := true
-TARGET_USE_CUSTOM_LUN_FILE_PATH := \"$config/usb_gadget/g1/functions/mass_storage.0/lun.%d/file\"
+TARGET_USE_CUSTOM_LUN_FILE_PATH := "config/usb_gadget/g1/functions/mass_storage.0/lun.%d/file"
 
 # Display
 TARGET_SCREEN_DENSITY := 320
