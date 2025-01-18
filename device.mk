@@ -38,11 +38,3 @@ PRODUCT_PACKAGES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.twrp.vendor_boot=true \
     persist.sys.fuse.passthrough.enable=true	
-
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.crypto.allow_encrypt_override=true \
-    ro.crypto.volume.filenames_mode=aes-256-cts \
-    ro.crypto.volume.metadata.method=dm-default-key \
-    ro.crypto.dm_default_key.options_format.version=2 \
-    ro.crypto.volume.options=::v2 \
-    keymaster_ver=4.0
