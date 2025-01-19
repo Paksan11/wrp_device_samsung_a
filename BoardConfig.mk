@@ -61,7 +61,10 @@ BOARD_KERNEL_CMDLINE := \
     bootopt=64S3,32N2,64N2 \
     loop.max_part=7 \
     androidboot.init_fatal_reboot_target=recovery \
-    androidboot.selinux=permissive
+    androidboot.hardware=mt6765 \
+     firmware_class.path=/vendor/firmware \
+    androidboot.boot_devices=bootdevice,soc/11230000.mmc,11230000.mmc \
+    androidboot.selinux=permissive  
 
 BOARD_MKBOOTIMG_ARGS += \
     --base $(BOARD_KERNEL_BASE) \
@@ -112,7 +115,7 @@ BOARD_ROOT_EXTRA_FOLDERS  := \
     persist	 \
     postinstall \
     odm \
-    metadata
+    metadata/vold
 
 BOARD_SUPPRESS_SECURE_ERASE := true
 
@@ -144,6 +147,7 @@ RECOVERY_SDCARD_ON_DATA := true
 
 # Android Verified Boot
 BOARD_AVB_ENABLE := true
+BOARD_AVB_HASHTREE_ENABLE := true
 BOARD_AVB_ROLLBACK_INDEX := 5
 BOARD_AVB_ALGORITHM += SHA512_RSA4096 
 BOARD_AVB_KEY_PATH += path/to/rsa_key_4096bits.pem
