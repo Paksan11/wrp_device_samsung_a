@@ -49,6 +49,8 @@ BOARD_USES_MTK_HARDWARE := true
 DEXPREOPT_GENERATE_APEX_IMAGE := true
 
 # Boot
+TARGET_KERNEL_ARCH += arm64
+BOARD_KERNEL_IMAGE_NAME += Image
 BOARD_CUSTOM_BOOTIMG := true
 BOARD_CUSTOM_BOOTIMG_MK := $(DEVICE_PATH)/bootimg.mk
 BOARD_BOOTIMG_HEADER_VERSION := 2
@@ -59,37 +61,32 @@ BOARD_KERNEL_TAGS_OFFSET := 0x07808000
 BOARD_KERNEL_OFFSET := 0x00008000
 BOARD_KERNEL_SECOND_OFFSET := 0xbff88000
 BOARD_DTB_OFFSET := 0x07808000
-BOARD_KERNEL_CMDLINE := \
-    bootopt=64S3,32N2,64N2 \
-    loop.max_part=7 \
-    androidboot.init_fatal_reboot_target=recovery \
-    androidboot.hardware=mt6765 \
-     firmware_class.path=/vendor/firmware \
-    androidboot.boot_devices=bootdevice,soc/11230000.mmc,11230000.mmc \
-    androidboot.selinux=permissive  
-
-BOARD_MKBOOTIMG_ARGS += \
-    --base $(BOARD_KERNEL_BASE) \
-	--kernel_offset $(BOARD_KERNEL_OFFSET) \
-	--ramdisk_offset $(BOARD_RAMDISK_OFFSET) \
-	--tags_offset $(BOARD_KERNEL_TAGS_OFFSET) \
-	--second_offset $(BOARD_KERNEL_SECOND_OFFSET) \
-	--header_version $(BOARD_BOOTIMG_HEADER_VERSION) \
-	--pagesize $(BOARD_KERNEL_PAGESIZE) \
-	--board "SRPUE06A007" \
-	--dtb_offset $(BOARD_DTB_OFFSET)
+BOARD_KERNEL_CMDLINE := bootopt=64S3,32N2,64N2
+BOARD_KERNEL_CMDLINE := loop.max_part=7
+BOARD_KERNEL_CMDLINE := BOARD_KERNEL_CMDLINE := androidboot.hardware=mt6765
+BOARD_KERNEL_CMDLINE := androidboot.selinux=permissive  
+BOARD_KERNEL_CMDLINE := androidboot.init_fatal_reboot_target=recovery
+BOARD_MKBOOTIMG_ARGS += --base $(BOARD_KERNEL_BASE)
+BOARD_MKBOOTIMG_ARGS += --kernel_offset $(BOARD_KERNEL_OFFSET)
+BOARD_MKBOOTIMG_ARGS += --ramdisk_offset $(BOARD_RAMDISK_OFFSET)
+BOARD_MKBOOTIMG_ARGS += --tags_offset $(BOARD_KERNEL_TAGS_OFFSET)
+BOARD_MKBOOTIMG_ARGS += --second_offset $(BOARD_KERNEL_SECOND_OFFSET)
+BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOTIMG_HEADER_VERSION)
+BOARD_MKBOOTIMG_ARGS += --pagesize $(BOARD_KERNEL_PAGESIZE)
+BOARD_MKBOOTIMG_ARGS += --board "SRPUE06A007"
+BOARD_MKBOOTIMG_ARGS += --dtb_offset $(BOARD_DTB_OFFSET)
 
 # Kernel
-TARGET_FORCE_PREBUILT_KERNEL += true
+TARGET_KERNEL_ARCH := arm64
+TARGET_FORCE_PREBUILT_KERNEL := true
 ifeq ($(TARGET_FORCE_PREBUILT_KERNEL),true)
-TARGET_PREBUILT_KERNEL += $(DEVICE_PATH)/prebuilt/Image
-TARGET_PREBUILT_DTB += $(DEVICE_PATH)/prebuilt/recovery.img-dtb
-BOARD_PREBUILT_DTBOIMAGE += $(DEVICE_PATH)/prebuilt/recovery_dtbo
+TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/Image
+TARGET_PREBUILT_DTB := $(DEVICE_PATH)/prebuilt/dtb.img
 BOARD_MKBOOTIMG_ARGS += --dtb $(TARGET_PREBUILT_DTB)
-BOARD_INCLUDE_RECOVERY_DTBO += true
-BOARD_INCLUDE_DTB_IN_BOOTIMG += true
-BOARD_KERNEL_IMAGE_NAME += Image
-TARGET_KERNEL_ARCH += arm64
+BOARD_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)/prebuilt/recovery_dtbo
+BOARD_INCLUDE_RECOVERY_DTBO := true
+BOARD_INCLUDE_DTB_IN_BOOTIMG := true
+BOARD_KERNEL_SEPARATED_DTBO := true
 endif
 
 # Partitions
@@ -135,9 +132,13 @@ TARGET_COPY_OUT_ODM := odm
 
 # VNDK
 BOARD_VNDK_VERSION := current
+BOARD_VENDOR_SEPOLICY_DIRS += \
+    vendor/twrp/sepolicy/common
+
+SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += vendor/twrp/sepolicy/private
+SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += vendor/twrp/sepolicy/public
 
 # Recovery
-TARGET_OUT_SHARED_LIBRARIES = true
 BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_HAS_LARGE_FILESYSTEM := true
 TARGET_USERIMAGES_USE_EXT4 := true
