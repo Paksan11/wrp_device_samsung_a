@@ -65,11 +65,10 @@ BOARD_KERNEL_CMDLINE := \
     bootopt=64S3,32N2,64N2 \
     loop.max_part=7 \
     androidboot.init_fatal_reboot_target=recovery \
-    androidboot.hardware=mt6765 \
     androidboot.selinux=permissive  
 
 BOARD_MKBOOTIMG_ARGS += \
-    --base $(BOARD_KERNEL_BASE) \
+        --base $(BOARD_KERNEL_BASE) \
 	--kernel_offset $(BOARD_KERNEL_OFFSET) \
 	--ramdisk_offset $(BOARD_RAMDISK_OFFSET) \
 	--tags_offset $(BOARD_KERNEL_TAGS_OFFSET) \
@@ -187,7 +186,7 @@ TW_THEME := portrait_hdpi
 # Do not set up legacy properties
 TW_NO_LEGACY_PROPS := true
 TW_INPUT_BLACKLIST := "hbtp_vm"
-TW_BRIGHTNESS_PATH += "sys/class/leds/lcd-backlight/brightness"
+TW_BRIGHTNESS_PATH = "/sys/class/leds/lcd-backlight/brightness"
 TW_MAX_BRIGHTNESS := 255
 TW_DEFAULT_BRIGHTNESS := 100
 TW_Y_OFFSET := 60
@@ -207,7 +206,7 @@ TW_DEFAULT_EXTERNAL_STORAGE := true
 TW_EXCLUDE_DEFAULT_USB_INIT := true
 TW_NO_SCREEN_TIMEOUT := true
 TW_USE_MODEL_HARDWARE_ID_FOR_DEVICE_ID := true
-TARGET_USE_CUSTOM_LUN_FILE_PATH += "config/usb_gadget/g1/functions/mass_storage.0/lun.%d/file"
+TARGET_USE_CUSTOM_LUN_FILE_PATH = "/config/usb_gadget/g1/functions/mass_storage.0/lun.%d/file"
 
 # Display
 TARGET_SCREEN_DENSITY := 320
