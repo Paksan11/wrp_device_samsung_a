@@ -1,26 +1,28 @@
 # mount point    	fs          type		device			device2				flags
 # Logical partitions
+system		/system_ext     		ext4							logical,first_stage_mount,slotselect
 system		/system     		ext4							logical,first_stage_mount,slotselect
 vendor		/vendor      		ext4							logical,first_stage_mount,slotselect
 product		/product        	ext4							logical,first_stage_mount,slotselect
 odm  		/odm         		ext4							logical,first_stage_mount,slotselect
 
 # Image
-/boot    		emmc		/dev/block/by-name/boot			flags=backup=1;flashimg
-/recovery    	emmc		/dev/block/by-name/recovery		flags=backup=1;flashimg
-/dtbo_image 	emmc		/dev/block/by-name/dtbo			flags=backup=1;flashimg;display="DTBO Image"
-/md1img_image	emmc		/dev/block/by-name/md1img		flags=backup=1;flashimg;display="MD1img Image"
-/omr_image      emmc        /dev/block/by-name/omr		    flags=backup=1;flashimg;display="OMR Image"
-/optics_image	emmc		/dev/block/by-name/optics   	flags=backup=1;flashimg;display="Optics Image"
-/prism_image	emmc		/dev/block/by-name/prism    	flags=backup=1;flashimg;display="Prism Image"
-/product_image	emmc		/dev/block/mapper/product		flags=backup=1;flashimg;display="Product Image"
-/system_image	emmc		/dev/block/mapper/system		flags=backup=1;flashimg;display="System Image"
-/vendor_image	emmc		/dev/block/mapper/vendor		flags=backup=1;flashimg;display="Vendor Image"
-/vbmeta_image	emmc		/dev/block/by-name/vbmeta       flags=backup=1;flashimg;display="VBmeta Image"
+/boot    		emmc		/dev/block/by-name/boot     			flags=backup=1;flashimg
+/recovery    	emmc		/dev/block/by-name/recovery     		flags=backup=1;flashimg
+/dtbo_image 	emmc		/dev/block/by-name/dtbo     			flags=backup=1;flashimg;display="DTBO Image"
+/md1img_image	emmc		/dev/block/by-name/md1img       		flags=backup=1;flashimg;display="MD1img Image"
+/omr_image      emmc        /dev/block/by-name/omr      		    flags=backup=1;flashimg;display="OMR Image"
+/optics_image	emmc		/dev/block/by-name/optics           	flags=backup=1;flashimg;display="Optics Image"
+/prism_image	emmc		/dev/block/by-name/prism            	flags=backup=1;flashimg;display="Prism Image"
+/product_image	emmc		/dev/block/mapper/product       		flags=backup=1;flashimg;display="Product Image"
+/system_image	emmc		/dev/block/mapper/system        		flags=backup=1;flashimg;display="System Image"
+/vendor_image	emmc		/dev/block/mapper/vendor        		flags=backup=1;flashimg;display="Vendor Image"
+/vbmeta_image	emmc		/dev/block/by-name/vbmeta              flags=backup=1;flashimg;display="VBmeta Image"
+/vbmeta_system_image	emmc		/dev/block/by-name/vbmeta_system       flags=backup=1;flashimg;display="VBmeta System Image"
 
 # Physical partitions
 /cache		ext4		/dev/block/platform/bootdevice/by-name/cache		flags=backup=0;display="Cache"
-/data		f2fs    	/dev/block/platform/bootdevice/by-name/userdata 	flags=encryptable=/metadata/vold/metadata_encryption
+/data		f2fs    	/dev/block/platform/bootdevice/by-name/userdata 	flags=encryptable=footer,length=-16384
 /efs		ext4		/dev/block/platform/bootdevice/by-name/sec_efs		flags=backup=1;display="EFS"
 /metadata	ext4		/dev/block/platform/bootdevice/by-name/md_udc		flags=backup=1;display="Metadata"
 /misc   	ext4		/dev/block/platform/bootdevice/by-name/misc  		flags=backup=1;display="Misc"
@@ -35,7 +37,11 @@ odm  		/odm         		ext4							logical,first_stage_mount,slotselect
 /spmfw		emmc		/dev/block/platform/bootdevice/by-name/spmfw		flags=backup=1;display="Spmfw"
 /scp1		emmc		/dev/block/platform/bootdevice/by-name/scp1   		flags=backup=1;display="Scp1"
 /sspm_1		emmc		/dev/block/platform/bootdevice/by-name/sspm_1		flags=backup=1;display="Sspm_1" 
+/sspm_1		emmc		/dev/block/platform/bootdevice/by-name/sspm_1		flags=backup=1;display="Sspm_1
+/system_root		ext4		/dev/block/by-name/super        		flags=backup=1;wipeingui;display="System_root"
+/vbmeta_vendor	emmc	/dev/block/platform/bootdevice/by-name/vbmeta_vendor flags=backup=1;display="VBmeta Vendor"
 
 # Removable storage
+/sdcard    	vfat	/dev/block/mmcblk0p50		flags=display="Internal Storage";storage;wipeingui;removable
 /external_sd	vfat	/dev/block/mmcblk1p1	/dev/block/mmcblk1		flags=display="Micro SD card";storage;wipeingui;removable
 /usb-otg    	vfat	/dev/block/sda1 		/dev/block/sda			flags=display="USB-OTG";storage;wipeingui;removable
