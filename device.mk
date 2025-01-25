@@ -8,7 +8,12 @@
 # VNDK
 PRODUCT_TARGET_VNDK_VERSION := 33
 
-# API
+PRODUCT_BUILD_PROP_OVERRIDES += \
+    PRODUCT_DEVICE=a03s \
+    PRODUCT_NAME=a03snnxx \
+    PRIVATE_BUILD_DESC="a03s-user 13 TP1A.220624.014 A037FXXS7CXK1 release-keys"
+
+BUILD_FINGERPRINT := samsung/a03snnxx/a03s:13/TP1A.220624.014/A037FXXS7CXK1:user/test-keys
 PRODUCT_SHIPPING_API_LEVEL := 32
 
 # Dynamic partitions
@@ -37,4 +42,12 @@ PRODUCT_PACKAGES += \
 # Hide Reflash TWRP & FUSE passthrough
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.twrp.vendor_boot=true \
-    persist.sys.fuse.passthrough.enable=true	
+    persist.sys.fuse.passthrough.enable=:= false	
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.crypto.allow_encrypt_override=true \
+    ro.crypto.volume.filenames_mode=aes-256-cts \
+    ro.crypto.volume.metadata.method=dm-default-key \
+    ro.crypto.dm_default_key.options_format.version=2 \
+    ro.crypto.volume.options=::v2 \
+    keymaster_ver=4.0
