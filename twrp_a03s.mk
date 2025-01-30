@@ -28,6 +28,9 @@ $(call inherit-product, vendor/twrp/config/common.mk)
 # Inherit device configuration
 $(call inherit-product, device/samsung/a03s/device.mk)
 
+# Additional packages
+-include vendor/twrp/config/packages.mk
+
 # Charger
 PRODUCT_PACKAGES += \
     charger_res_images
@@ -41,3 +44,5 @@ PRODUCT_MODEL := Galaxy A03s
 PRODUCT_BRAND := samsung
 PRODUCT_MANUFACTURER := samsung
 PRODUCT_GMS_CLIENTID_BASE := android-samsung-ss
+PRODUCT_EXTRA_RECOVERY_KEYS := \
+    vendor/twrp/build/target/product/security/lineage
